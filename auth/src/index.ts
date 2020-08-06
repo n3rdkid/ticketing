@@ -37,6 +37,10 @@ const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   try {
+    if(!process.env.JWT_KEY){
+      throw new Error("JWT must be defined!")
+    }
+
     await mongoose.connect("mongodb://auth-mongo-srv:27017/auth", {
       useCreateIndex: true,
       useNewUrlParser: true,

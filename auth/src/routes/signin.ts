@@ -16,7 +16,6 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    console.log(email,password)
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       throw new BadRequestError("Invalid credentials!");
@@ -25,7 +24,7 @@ router.post(
       existingUser.password,
       password
     );
-  
+
     if (!passwordMatched) {
       throw new BadRequestError("Invalid credentials!");
     }
